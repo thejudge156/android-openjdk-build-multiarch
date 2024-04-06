@@ -9,7 +9,7 @@ git clone --depth 1 -b 'v2.2.0' https://github.com/termux/termux-elf-cleaner || 
 cd termux-elf-cleaner
 autoreconf --install
 bash configure
-make CFLAGS=-D__ANDROID_API__=24
+make CFLAGS=-D__ANDROID_API__=32
 cd ..
 
 findexec() { find $1 -type f -name "*" -not -name "*.o" -exec sh -c '
@@ -21,9 +21,6 @@ findexec() { find $1 -type f -name "*" -not -name "*.o" -exec sh -c '
 exit 1
 ' sh {} \; -print
 }
-
-findexec jreout | xargs -- ./termux-elf-cleaner/termux-elf-cleaner
-findexec jdkout | xargs -- ./termux-elf-cleaner/termux-elf-cleaner
 
 fi
 
